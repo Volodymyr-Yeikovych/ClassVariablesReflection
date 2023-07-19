@@ -1,9 +1,9 @@
 package org.example;
 
+import lombok.Data;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Objects;
-
+@Data
 public class Person {
     private final String name;
     @Nullable
@@ -18,32 +18,7 @@ public class Person {
         this.age = personBuilder.age;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return age == person.age && Objects.equals(name, person.name) && Objects.equals(surname, person.surname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, surname, age);
-    }
-
-    public static class PersonBuilder{
+    public static class PersonBuilder {
         private final String name;
         @Nullable
         private String middleName;
