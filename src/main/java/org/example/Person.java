@@ -103,6 +103,7 @@ public class Person {
         }
 
         public Person build() {
+            if (name == null || surname == null) throw new InvalidPersonVariableValueException("Name or Surname is null.");
             return new Person(this);
         }
     }
