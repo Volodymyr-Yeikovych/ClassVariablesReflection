@@ -1,10 +1,11 @@
 package org.example;
 
+import javax.management.InvalidAttributeValueException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
 public class Main {
-    public static void main(String[] args) throws IllegalAccessException {
+    public static void main(String[] args) throws IllegalAccessException, InvalidAttributeValueException {
         Person him = new Person.PersonBuilder("Vale", "Chambers", 17).build();
 
         printVariablesInfo(him);
@@ -14,6 +15,12 @@ public class Main {
         Person other = new Person.PersonBuilder("Kyle", "Hustles", 17).setMiddleName("Jan").build();
 
         printVariablesInfo(other);
+
+        System.out.println();
+
+        Person another = new Person.PersonBuilder().setName("Vasa").setAge(27).build();
+
+        printVariablesInfo(another);
     }
 
     public static void printVariablesInfo(Object t) throws IllegalAccessException {

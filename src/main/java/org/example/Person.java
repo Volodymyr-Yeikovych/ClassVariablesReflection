@@ -2,6 +2,7 @@ package org.example;
 
 import org.jetbrains.annotations.Nullable;
 
+import javax.management.InvalidAttributeValueException;
 import java.util.Objects;
 
 public class Person {
@@ -44,21 +45,39 @@ public class Person {
     }
 
     public static class PersonBuilder{
-        private final String name;
+        private String name;
         @Nullable
         private String middleName;
-        private final String surname;
-        private final int age;
+        private String surname;
+        private int age;
 
-        public PersonBuilder(String name, String surname, int age) {
-            this.name = name.length() >= 2 ? name : "John";
-            this.middleName = "Junior";
-            this.surname = surname.length() >= 2 ? surname : "Doe";
-            this.age = age > 0 ? age : 18;
+        public PersonBuilder(String name, String surname, int age) throws InvalidAttributeValueException {
+            this.setName(name).setSurname(surname).setAge(age);
         }
 
-        public PersonBuilder setMiddleName(String middleName) {
-            this.middleName = middleName.length() >= 2 ? middleName : "Junior";
+        public PersonBuilder() {
+
+        }
+
+        public PersonBuilder setName(String name) throws InvalidAttributeValueException {
+            if (name.length() < 2) throw new InvalidAttributeValueException();
+            this.name = name;
+            return this;
+        }
+
+        public PersonBuilder setMiddleName(String middleName) throws InvalidAttributeValueException {
+            if (middleName.length() < 2) throw new InvalidAttributeValueException();
+            this.middleName = middleName;
+            return this;
+        }
+        public PersonBuilder setSurname(String surname) throws InvalidAttributeValueException {
+            if (surname.length() < 2) throw new InvalidAttributeValueException();
+            this.surname = surname;
+            return this;
+        }
+        public PersonBuilder setAge(int age) throws InvalidAttributeValueException {
+            if (age < 1) throw new InvalidAttributeValueException();
+            this.age = age;
             return this;
         }
 
