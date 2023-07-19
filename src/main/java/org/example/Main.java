@@ -21,6 +21,7 @@ public class Main {
         Person another = new Person.PersonBuilder().withName("Vasa").withAge(27).build();
 
         printVariablesInfo(another);
+
     }
 
     public static void printVariablesInfo(Object t) throws IllegalAccessException {

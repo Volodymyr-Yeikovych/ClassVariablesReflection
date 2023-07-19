@@ -12,6 +12,9 @@ public class Person {
     private final int age;
 
     public Person(PersonBuilder personBuilder) {
+        if (personBuilder.name == null || personBuilder.surname == null) {
+            throw new InvalidPersonVariableValueException("Name or Surname is null.");
+        }
         this.name = personBuilder.name;
         this.middleName = personBuilder.middleName;
         this.surname = personBuilder.surname;
@@ -103,7 +106,6 @@ public class Person {
         }
 
         public Person build() {
-            if (name == null || surname == null) throw new InvalidPersonVariableValueException("Name or Surname is null.");
             return new Person(this);
         }
     }
