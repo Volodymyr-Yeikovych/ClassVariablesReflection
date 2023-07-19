@@ -109,4 +109,8 @@ public class Person {
             return new Person(this);
         }
     }
+
+    public static Person.PersonBuilder builder() {
+        return new PersonBuilder();
+    }
 }
