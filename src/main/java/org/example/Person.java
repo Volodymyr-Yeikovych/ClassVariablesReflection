@@ -2,7 +2,6 @@ package org.example;
 
 import org.jetbrains.annotations.Nullable;
 
-import javax.management.InvalidAttributeValueException;
 import java.util.Objects;
 
 public class Person {
@@ -45,38 +44,46 @@ public class Person {
     }
 
     public static class PersonBuilder{
+
+        private static final int MIN_STRING_LENGTH = 2;
+        private static final int MIN_AGE = 1;
         private String name;
         @Nullable
         private String middleName;
         private String surname;
         private int age;
 
-        public PersonBuilder(String name, String surname, int age) throws InvalidAttributeValueException {
-            this.setName(name).setSurname(surname).setAge(age);
+        public PersonBuilder(Person person) {
+            this.name = person.name;
+            this.middleName = person.middleName;
+            this.surname = person.surname;
+            this.age = person.age;
         }
 
         public PersonBuilder() {
 
         }
 
-        public PersonBuilder setName(String name) throws InvalidAttributeValueException {
-            if (name.length() < 2) throw new InvalidAttributeValueException();
+        public PersonBuilder withName(String name) {
+            if (name.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Name");
             this.name = name;
             return this;
         }
 
-        public PersonBuilder setMiddleName(String middleName) throws InvalidAttributeValueException {
-            if (middleName.length() < 2) throw new InvalidAttributeValueException();
-            this.middleName = middleName;
+        public PersonBuilder withMiddleName(String middleName) {
+            if (middleName != null) {
+                if (middleName.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Name");
+                this.middleName = middleName;
+            }
             return this;
         }
-        public PersonBuilder setSurname(String surname) throws InvalidAttributeValueException {
-            if (surname.length() < 2) throw new InvalidAttributeValueException();
+        public PersonBuilder withSurname(String surname)  {
+            if (surname.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Surname");
             this.surname = surname;
             return this;
         }
-        public PersonBuilder setAge(int age) throws InvalidAttributeValueException {
-            if (age < 1) throw new InvalidAttributeValueException();
+        public PersonBuilder withAge(int age) {
+            if (age < MIN_AGE) throw new InvalidPersonVariableValueException("Invalid age");
             this.age = age;
             return this;
         }

@@ -6,19 +6,19 @@ import java.lang.reflect.Modifier;
 
 public class Main {
     public static void main(String[] args) throws IllegalAccessException, InvalidAttributeValueException {
-        Person him = new Person.PersonBuilder("Vale", "Chambers", 17).build();
+        Person him = new Person.PersonBuilder().withName("Vale").withSurname("Chambers").withAge(17).build();
 
         printVariablesInfo(him);
 
         System.out.println();
 
-        Person other = new Person.PersonBuilder("Kyle", "Hustles", 17).setMiddleName("Jan").build();
+        Person other = new Person.PersonBuilder().withName("Kyle").withSurname("Hustles").withAge(17).withMiddleName("Jan").build();
 
         printVariablesInfo(other);
 
         System.out.println();
 
-        Person another = new Person.PersonBuilder().setName("Vasa").setAge(27).build();
+        Person another = new Person.PersonBuilder().withName("Vasa").withAge(27).build();
 
         printVariablesInfo(another);
     }
