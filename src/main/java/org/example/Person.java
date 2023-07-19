@@ -30,6 +30,10 @@ public class Person {
         return age;
     }
 
+    public String getMiddleName() {
+        return middleName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -65,7 +69,7 @@ public class Person {
         }
 
         public PersonBuilder withName(String name) {
-            if (name.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Name");
+            if (name == null || name.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Name");
             this.name = name;
             return this;
         }
@@ -78,7 +82,7 @@ public class Person {
             return this;
         }
         public PersonBuilder withSurname(String surname)  {
-            if (surname.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Surname");
+            if (surname == null || surname.length() < MIN_STRING_LENGTH) throw new InvalidPersonVariableValueException("Invalid Surname");
             this.surname = surname;
             return this;
         }
