@@ -47,6 +47,16 @@ public class Person {
         return Objects.hash(name, surname, age);
     }
 
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", surname='" + surname + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     public static class PersonBuilder{
 
         private static final int MIN_STRING_LENGTH = 2;
