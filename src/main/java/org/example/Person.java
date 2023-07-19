@@ -11,10 +11,7 @@ public class Person {
     private final String surname;
     private final int age;
 
-    public Person(PersonBuilder personBuilder) {
-        if (personBuilder == null) {
-            throw new RuntimeException("Person builder is null.");
-        }
+    private Person(PersonBuilder personBuilder) {
         if (personBuilder.name == null || personBuilder.surname == null) {
             throw new InvalidPersonVariableValueException("Name or Surname is null.");
         }
